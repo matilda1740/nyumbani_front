@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import PropOwnersApp from './components/property_owners/PropOwnersApp'
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <section className="app_base">
+        <Router>
+          <Switch>
+            <Route path="/prop_owners">
+              <PropOwnersApp />
+            </Route>
+          </Switch>
+        </Router>
+    </section>
+  )
 }
-
-export default App;
