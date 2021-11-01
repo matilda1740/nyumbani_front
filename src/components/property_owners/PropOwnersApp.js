@@ -10,6 +10,7 @@ import Listings from './Listings'
 import Transactions from './Transactions'
 import Requests from './Requests'
 import Applications from './Applications'
+import TransactionsTable from './TransactionsTable'
 
 export default function PropOwnersApp() {
     return (
@@ -36,6 +37,8 @@ export default function PropOwnersApp() {
                     <Route exact path="/prop_owners/add_properties">
                         <AddProperty />
                     </Route>
+                    {/* TRANSACTION RELATED URLS */}
+
                 </Switch>
             </div>
 
