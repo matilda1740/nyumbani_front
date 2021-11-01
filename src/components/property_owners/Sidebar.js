@@ -6,7 +6,7 @@ export default function Sidebar() {
     return (
         <section className="sidebar_section">
             <Link to="/prop_owners" className="sidebar_logo_div">
-                <img src="/public/images/logo.png" alt="Logo" />
+                <img src="/images/logo.png" alt="Logo" />
             </Link>
 
             <section className="sidebar_options">
