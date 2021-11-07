@@ -34,7 +34,7 @@ export default function Listings() {
                                 <div className="info_cont">
                                     <div className="each_info">
                                         <p>Status: </p>
-                                        <div className="info_div isOccupied">Occupied</div>
+                                        <div className="info_div isVacant">Vacant</div>
                                     </div>
                                     <div className="each_info">
                                         <div className="info_div details">View Details</div>
@@ -56,7 +56,7 @@ export default function Listings() {
                                 <div className="info_cont">
                                     <div className="each_info">
                                         <p>Status: </p>
-                                        <div className="info_div isOccupied">Occupied</div>
+                                        <div className="info_div isVacant">Vacant</div>
                                     </div>
                                     <div className="each_info">
                                         <div className="info_div details">View Details</div>
@@ -78,7 +78,7 @@ export default function Listings() {
                                 <div className="info_cont">
                                     <div className="each_info">
                                         <p>Status: </p>
-                                        <div className="info_div isOccupied">Occupied</div>
+                                        <div className="info_div isVacant">Vacant</div>
                                     </div>
                                     <div className="each_info">
                                         <div className="info_div details">View Details</div>

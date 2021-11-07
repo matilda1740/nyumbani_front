@@ -2,7 +2,8 @@ import React from 'react'
 import { Add, SentimentVeryDissatisfied } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
-export default function Properties() {
+export default function Properties({getProperties, getTargetProperty, propTargetID}) {
+
     return (
         <div className="properties_section">
             <div className="section_routes_div">
@@ -34,7 +35,7 @@ export default function Properties() {
                                     <div className="info_div isOccupied">Occupied</div>
                                 </div>
                                 <div className="each_info">
-                                    <div className="info_div details">View Details</div>
+                                    <Link to="/prop_owners/1" onClick={getTargetProperty(1)} className="info_div details">View Details</Link>
                                 </div>                            
                             </div>
                         </div>

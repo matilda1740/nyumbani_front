@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './propOwners.css'
 
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
@@ -11,19 +11,35 @@ import Transactions from './Transactions'
 import Requests from './Requests'
 import Applications from './Applications'
 import TransactionsTable from './TransactionsTable'
+import EachProperty from './EachProperty'
 
-export default function PropOwnersApp() {
+export default function PropOwnersApp({getProperties}) {
+
+    const [propTargetID, setPropTargetID] = useState();
+
+    const getTargetProperty = targetID => () => {
+        setPropTargetID(targetID)
+    }
+
+    const handleGetProperty = () => {
+        getProperties()
+    }
     return (
         <section className="propowners_app_base">
             <Sidebar />
+            <button onClick={handleGetProperty}>Get Properties</button>
             <div className="propowners_app_body">
                 <Header />
                 <Switch>
                     <Route exact path="/prop_owners/properties">
-                        <Properties />
+                        <Properties
+                        getProperties={getProperties}
+                         getTargetProperty={getTargetProperty}
+                         propTargetID={propTargetID}
+                         />
                     </Route>
                     <Route exact path="/prop_owners/listings">
-                        <Listings />
+                        <Listings getTargetProperty={getTargetProperty}/>
                     </Route>
                     <Route exact path="/prop_owners/transactions">
                         <Transactions />
@@ -38,7 +54,12 @@ export default function PropOwnersApp() {
                         <AddProperty />
                     </Route>
                     {/* TRANSACTION RELATED URLS */}
-
+                    {/* <Route exact path={`/prop_owners/${propTargetID}`}>
+                        <EachProperty propTargetID={propTargetID}/>
+                    </Route> */}
+                    <Route exact path="/prop_owners/1">
+                        <EachProperty propTargetID={propTargetID}/>
+                    </Route>                    
                 </Switch>
             </div>
 

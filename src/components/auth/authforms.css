@@ -1,0 +1,74 @@
+.auth_body {
+}
+
+.auth_section {
+  width: 800px;
+  height: 700px;
+  border-radius: 8px;
+  border: 1px solid #400101;
+  display: flex;
+  margin: 5% 0 0 22.5%;
+  /* align-self: center; */
+}
+.auth_section .column_left {
+  background-color: #400101;
+  margin: 0;
+  align-items: center;
+}
+.auth_section .column_left,
+.auth_section .column_right {
+  width: 50%;
+  height: 100%;
+}
+.auth_image {
+  width: 300px;
+  height: 300px;
+  margin-top: 50%;
+}
+.auth_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.auth_section .column_right,
+.auth_form {
+  display: flex;
+  flex-direction: column;
+}
+.auth_form {
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+}
+.auth_section .login_form {
+  justify-content: center;
+}
+.auth_section .login_form * {
+  margin: 10px 0;
+}
+
+.auth_section .login_form h2 {
+  margin-bottom: 30px;
+}
+.column_right h2 {
+  text-align: left;
+}
+.auth_section .login_form .form_error {
+  margin-bottom: 30px;
+}
+.auth_section .login_form .form_error p {
+  margin: 0;
+}
+.auth_section .column_right .login_footer {
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+  /* font-size: small; */
+}
+.auth_section .column_right .login_footer p:first-child {
+  width: 65%;
+}
+.auth_section .column_right .login_footer p:last-child {
+  width: 35%;
+}
