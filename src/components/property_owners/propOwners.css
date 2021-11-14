@@ -4,7 +4,8 @@
   background-color: rgba(40, 84, 169, 0.1);
 }
 /* HEADER SECTION */
-.prop_owners_header_section {
+.prop_owners_header_section,
+.tenant_header_section {
   width: 1190px;
   height: 60px;
   display: flex;
@@ -151,7 +152,8 @@
   align-self: flex-start;
   width: 100%;
 }
-.prop_div {
+.prop_div,
+.tenant_prop_div {
   width: 100%;
   height: 100%;
   display: flex;
@@ -172,19 +174,22 @@
   box-shadow: 0 0 10px rgba(40, 84, 169, 0.15);
   border-radius: 8px;
 }
-.image_cont {
+.image_cont,
+.tenant_image_cont {
   border-radius: 8px;
   width: 420px;
   height: 225px;
   margin: 25px 25px 0 25px;
 }
-.image_cont img {
+.image_cont img,
+.tenant_image_cont img {
   object-fit: fill;
   width: 100%;
   height: 100%;
   border-radius: 8px;
 }
-.info_cont {
+.info_cont,
+.tenant_info_cont {
   width: 100%;
   height: 70px;
   padding: 0 25px;
@@ -209,7 +214,7 @@
   color: #f4f4f4;
 }
 .isVacant {
-  background-color: #e80303;
+  background-color: #c50101;
   color: #131313;
 }
 .details {
@@ -547,7 +552,8 @@
   outline: none;
   border: transparent;
 }
-.form_btn:hover {
+.form_btn:hover,
+.request_btn:hover {
   transform: scale(1.02);
   cursor: pointer;
 }

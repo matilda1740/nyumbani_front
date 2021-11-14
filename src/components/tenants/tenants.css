@@ -1,0 +1,109 @@
+/* PROPERTIES */
+.tenant_prop_div {
+}
+.each_tenant_prop_div {
+  width: 80%;
+  height: 320px;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px rgba(40, 84, 169, 0.15);
+  border-radius: 8px;
+  display: flex;
+}
+.tenant_image_cont {
+  height: 85%;
+}
+.tenant_info_cont,
+.tenant_each_info,
+.tenant_rented_prop_details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.tenant_info_cont {
+  height: 100%;
+  width: 40%;
+}
+.tenant_each_info {
+  width: 100%;
+  height: 100%;
+}
+.tenant_each_info h3 {
+  font-weight: bolder;
+}
+.tenant_each_info .info_container {
+  display: flex;
+}
+.tenant_rented_prop_details {
+  width: 100%;
+  height: 50%;
+  background-color: rgba(65, 0, 1, 0.9);
+  color: #f4f4f4;
+  border-radius: 8px;
+  padding: 0 20px;
+}
+.tenant_each_info .info_container p {
+  width: 33.33333%;
+}
+.tenant_each_info .info_container svg {
+  color: #400101;
+}
+
+/* LISTINGS */
+.tenant_list_each_info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.tenant_list_each_info svg {
+  color: #400101;
+  font-size: 20px;
+}
+
+/* REQUESTS */
+.listing_title a {
+  margin-right: 10%;
+}
+.request_btn {
+  transition: 0.3s;
+  background-color: #400101;
+  color: #dcdcdc;
+  /* font-size: medium; */
+  border-radius: 25px;
+  padding: 10px;
+  outline: none;
+  border: transparent;
+}
+
+.status_pending {
+  background-color: #c50101;
+  color: #131313;
+}
+
+.status_closed {
+  background-color: #257e06;
+  color: #f4f4f4;
+}
+/* REQUEST FORM */
+.request_form_div {
+  width: 75%;
+  height: 600px;
+  border: 1px solid #400101;
+  border-radius: 8px;
+  margin: 5% 0 0 0%;
+  align-self: center;
+  padding: 0 100px 50px 100px;
+}
+.form_footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form_footer a {
+  display: flex;
+  align-items: center;
+  color: #400101;
+  margin-top: 20px;
+}

@@ -101,16 +101,16 @@ export default function App() {
     <section className="app_base">
         <Router>
           <Switch>
-            <Route path="/register">
+            <Route exact path="/register">
               <Register registerUser={registerUser}/>
             </Route>
-            <Route path="/login">
+            <Route exact path="/login">
               <Login loginUser={loginUser}/>
             </Route>                      
             <Route path="/prop_owners">
               <PropOwnersApp getProperties={getProperties}/>
             </Route>
-            <Route path="/tenants">
+            <Route  path="/tenants">
               <TenantApp />
             </Route>  
             <Route path="*">
