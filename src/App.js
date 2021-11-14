@@ -11,6 +11,8 @@ import {
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import TenantApp from './components/tenants/TenantApp';
+import Error from './components/Error';
 export default function App() {
 
   const history = useHistory()
@@ -26,10 +28,11 @@ export default function App() {
   ])
   const registerUser = async (userInfo) => {
     // console.log("Register User: ", userInfo);
+    // www.nyumbani.heroku.../properties
     axios.post("https://jsonplaceholder.typicode.com/posts", userInfo, {headers: {'Content-Type': 'application/json'}})
         .then( response => {
-          console.log("Registration Response: ", response)
-          history.push("/login");
+          console.log("Registration Response: ", response.data)
+          // history.push("/login");
         } )
         .catch( error => console.log("Registeration Error: ", error))
   }
@@ -46,6 +49,7 @@ export default function App() {
           history.push("/prop_owners")
          })
          .catch( error => console.log("Login Error: ", error));
+         
   }
 
   // PROPERTIES
@@ -106,6 +110,12 @@ export default function App() {
             <Route path="/prop_owners">
               <PropOwnersApp getProperties={getProperties}/>
             </Route>
+            <Route path="/tenants">
+              <TenantApp />
+            </Route>  
+            <Route path="*">
+              <Error />
+            </Route>          
           </Switch>
         </Router>
     </section>

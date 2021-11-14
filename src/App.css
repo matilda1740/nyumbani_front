@@ -17,3 +17,27 @@ a {
 svg {
   cursor: pointer;
 }
+.module_app_base {
+  width: 100vw;
+  /* height: 100%; */
+  height: 1000px;
+
+  display: flex;
+}
+.module_app_body {
+  margin-top: 60px;
+}
+.module_app_body,
+.section_body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* ERROR PAGE */
+.error_page_section {
+  background-color: #400101;
+  width: 100%;
+  height: 100%;
+  /* color: ; */
+}

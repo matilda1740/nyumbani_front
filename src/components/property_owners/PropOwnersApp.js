@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
 import Header from './Header'
 import AddProperty from './AddProperty'
 import Properties from './Properties'
-import Sidebar from './Sidebar'
+import POSidebar from './POSidebar'
 import Listings from './Listings'
 import Transactions from './Transactions'
 import Requests from './Requests'
@@ -26,9 +26,9 @@ export default function PropOwnersApp({getProperties}) {
     }
     return (
         <section className="propowners_app_base">
-            <Sidebar />
+            <POSidebar />
             <button onClick={handleGetProperty}>Get Properties</button>
-            <div className="propowners_app_body">
+            <div className="module_app_body">
                 <Header />
                 <Switch>
                     <Route exact path="/prop_owners/properties">
