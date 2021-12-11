@@ -17,6 +17,16 @@ a {
 svg {
   cursor: pointer;
 }
+button {
+  outline: none;
+  border: transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
 .module_app_base {
   width: 100vw;
   /* height: 100%; */
@@ -34,6 +44,98 @@ svg {
   display: flex;
   flex-direction: column;
 }
+/* HOME PAGE */
+.main_header {
+  top: 0;
+  position: fixed;
+
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  color: #f8f8f8;
+}
+.main_header_left,
+.main_header_middle,
+.main_header_right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.main_header_left {
+  width: 20%;
+  justify-content: flex-end;
+}
+.main_header_left img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+.main_header_middle {
+  width: 50%;
+  justify-content: center;
+}
+
+.header_selection {
+  margin: 0 10px;
+  padding: 10px 0;
+  transition: all 0.5s ease-in-out;
+}
+.header_selection:hover {
+  cursor: pointer;
+  font-weight: 900;
+  border-bottom: 1px solid #f8f8f8;
+  /* transform: scale(1.01); */
+}
+.main_header_right {
+  width: 30%;
+}
+.main_header_right a {
+  margin: 0 10px;
+  width: 80px;
+  height: 30px;
+  /* border: transparent; */
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_header_right a:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.login_btn {
+  /* border: 1px solid #f8f8f8; */
+  background-color: #400101;
+  color: #f8f8f8;
+}
+.signup_btn {
+  background-color: #f8f8f8;
+  color: #400101;
+}
+
+.signup_btn:hover {
+  border: 1px solid #f8f8f8;
+  background-color: #400101;
+  color: #f8f8f8;
+}
+.login_btn:hover {
+  background-color: #f8f8f8;
+  color: #400101;
+  border: transparent;
+}
+.banner_section {
+  width: 100%;
+  height: 800px;
+  /* background-image: url("../public/images/home_bg.png"); */
+}
+/* .banner_upper_triangle {
+  width: 0;
+  height: 0;
+  border-top: 55vw solid #400101;
+  border-right: 100vw solid transparent;
+} */
 /* ERROR PAGE */
 .error_page_section {
   background-color: #400101;

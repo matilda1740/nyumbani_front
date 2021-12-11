@@ -13,7 +13,7 @@ export default function Register({registerUser}) {
     const [role, setRole] = useState();
     const [email, setEmail] = useState();
     const [password, setPass] = useState();
-    const [confirmPass, setConfirmPass] = useState();
+    const [passwordConfirm, setPasswordConfirm] = useState();
 
     const [isError, setIsError] = useState(false);
     const [clientSideError, setClientSideError] = useState();
@@ -32,7 +32,7 @@ export default function Register({registerUser}) {
         }else if(e.target.name === "password"){
             setPass(e.target.value)
         }else if(e.target.name === "confirmPass"){
-            setConfirmPass(e.target.value)
+            setPasswordConfirm(e.target.value)
         }
 
         if(roleBox){
@@ -43,7 +43,7 @@ export default function Register({registerUser}) {
 
     const validateRegister = async () => {
         // CHECK IF EMPTY
-        if(password !== confirmPass){
+        if(password !== passwordConfirm){
             setIsError(true);
             setClientSideError("Please Ensure Password is the same as the Confirm Password")
         }else{
@@ -57,43 +57,17 @@ export default function Register({registerUser}) {
         validateRegister()
             .then( data => {
                 registerUser({
-                // userID: ,
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
                 role: role,
                 password: password,
-                isDeleted : 1,               
+                passwordConfirm: password,
+
+                // isDeleted : 1,               
                 })
-            })
-
-        //     try{
-        //         // console.log(userEmail, userPass)
-        //         let response = await registerUser(userEmail, userPass)
-                    
-        //         if(response){
-        //             // console.log(response.user.uid)
-        //             await userTable.add({
-        //             "userID": response.user.uid,
-        //             "fname": firstName,
-        //             "lname": lastName,
-        //             "phone": userPhone,
-        //             "type" : isAdmin ? "admin" : "customer",
-        //             "email": userEmail,
-        //             "pass": userPass,
-        //             "datejoined": time
-        //             }) 
-
-        //         }
-                
-        //         await isAdmin ? history.push("/admin") : history.push("/")
-        //         await  setIsAuthError(false);
-        //     }catch(error){
-        //         console.log("Registration Error: ", error)
-        //         setIsAuthError(true);
-        //         setAuthError(error.message)
-        //     }
- 
+                console.log({firstName, lastName, email, role, password})
+            }) 
     }
 
     return (
@@ -124,8 +98,8 @@ export default function Register({registerUser}) {
 
                     <select onChange={handleChange("role")} className="form_inputs" id="role" name="role">
                         <option value="" defaultValue>Select Role:</option>
-                        <option value="1">Property Owner</option>
-                        <option value="2">Tenant</option>
+                        <option value="Property Owner">Property Owner</option>
+                        <option value="Tenant">Tenant</option>
                     </select>     
 
                     <label className="form_labels">Password:</label>

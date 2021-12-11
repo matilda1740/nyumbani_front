@@ -16,13 +16,19 @@ import Error from './components/Error';
 
 import { AuthProvider, useAuth } from "./contexts/AuthContext"
 import AdminApp from './components/admin/AdminApp';
+import Home from './components/Home';
 
 export default function App() {
 
   const history = useHistory()
-  const [currentUserData, setCurrentUserData] = useState({
+  const [currentUser,setCurrentUser] = useState(false)
+  const [currentUserData, setCurrentUserData] = useState()
 
-  })
+  const [propDetails, setPropDetails] = useState();
+  const [allListings, setAllListings] = useState();
+  const [userListings, setUserListings] = useState();
+
+
 
   const [errors, setErrors] = useState([
     {
@@ -33,17 +39,47 @@ export default function App() {
     }
   ])
 
+  // AUTH
+  const registerUser = async (userData) => {
+    console.log("Main App User Details: ", userData);
+    // setCurrentUser(true)
+    // setCurrentUserData(userData)
+      axios.post(
+        '/register', 
+        userData, 
+        {headers: {'Access-Control-Allow-Origin': '*'}}
+        )
+      .then( response => console.log("Success, Registering User: ", response.data))
+      .catch( error => console.log("Error Registering User: ", error))    
+  }
+  const loginUser = async (userData) => {
+
+  }
+
   // PROPERTIES
   const getProperties = async () => {
-    // GET ALL PROPERTIES WHERE USERID == LOGGED IN USER
-    // axios.get('https://jsonplaceholder.typicode.com/comments?postId=1')
     axios.get('/properties/1')
-      .then( response => console.log("Success, Getting Properties: ", response.data))
+      .then( response => {
+        console.log("Success, Getting Properties: ", response.data)
+        setPropDetails(response.data)
+      })
       .catch( error => console.log("Error Getting Properties: ", error))  
   }
   const getAllListings = async () => {
     axios.get('/listings')
-      .then( response => console.log("Success, Getting All Listings: ", response.data))
+      .then( response => {
+      console.log("Success, Getting All Listings: ", response.data)
+      setAllListings(response.data)
+      } )
+      .catch( error => console.log("Error Getting Listings: ", error))  
+  } 
+
+    const getUserListings = async () => {
+    axios.get('/listing/1')
+      .then( response => {
+      console.log("Success, Getting User Listings: ", response.data)
+      setUserListings(response.data)
+      } )
       .catch( error => console.log("Error Getting Listings: ", error))  
   } 
   const getEachListing = async () => {
@@ -98,32 +134,53 @@ export default function App() {
   return (
     <section className="app_base">
     {/* <h1>Home Page</h1> */}
-    <button onClick={getProperties}>Get Properties</button>
+    {/* <button onClick={getProperties}>Get Properties</button>
     <button onClick={getAllListings}>Get All Listings</button>
     <button onClick={getEachListing}>Get Each Listing</button>
     <button onClick={getApplications}>Get Applications</button>
-    <button onClick={getRequests}>Get Requests</button>
+    <button onClick={getRequests}>Get Requests</button> */}
 
         <Router>
           {/* <AuthProvider> */}
           <Switch>
-            <Route exact path="/register">
-              <Register/>
-            </Route>
             <Route exact path="/">
-              <Login/>
-            </Route>                      
+              <Home/>
+            </Route>           
+            <Route exact path="/register">
+              <Register registerUser={registerUser} />
+            </Route>
+                     
              <Route eaxct path="/login">
               <Login/>
-            </Route>           
-            <Route path="/prop_owners">
-              <PropOwnersApp/>
             </Route>
-            <Route path="/tenants">
-              <TenantApp />
-            </Route>  
+                <Route path="/prop_owners">
+                  <PropOwnersApp 
+                    currentUserData={currentUserData}
+                    getProperties={getProperties} 
+                    propDetails={propDetails} 
+                    getAllListings={getAllListings}
+                    allListings={allListings}
+                    getUserListings={getUserListings}
+                    userListings={userListings}
+                    />
+                </Route> 
+                <Route path="/tenants">
+                  <TenantApp currentUserData={currentUserData}/>
+                </Route>                                {/* { */}
+              {/* (currentUser && currentUserData !== undefined) ? */}
+              {/* currentUserData.role === "Property Owner" ? 
+
+              : currentUserData.role === "Tenant" &&
+
+              :
+             <Route eaxct path="/login">
+              <Login/>
+            </Route>                 */}
+            {/* }          */}
+
+
             <Route path="/admin">
-              <AdminApp />
+              <AdminApp currentUserData={currentUserData}/>
             </Route>             
             <Route path="*">
               <Error />

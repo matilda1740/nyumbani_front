@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './propOwners.css'
 
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
@@ -12,8 +12,9 @@ import Requests from './Requests'
 import Applications from './Applications'
 import TransactionsTable from './TransactionsTable'
 import EachProperty from './EachProperty'
+import axios from '../../axios'
 
-export default function PropOwnersApp() {
+export default function PropOwnersApp({propDetails, getProperties,  getAllListings, allListings, getUserListings, userListings}) {
 
     const [propTargetID, setPropTargetID] = useState();
 
@@ -21,21 +22,26 @@ export default function PropOwnersApp() {
         setPropTargetID(targetID)
     }
 
-    // const handleGetProperty = () => {
-    //     getProperties()
-    // }
+   useEffect(() => {
+        getProperties();
+        getAllListings();
+        getUserListings();
+   }, [])
     return (
-        <section className="propowners_app_base">
+        <section className="module_app_base">
             <POSidebar />
             {/* <button onClick={handleGetProperty}>Get Properties</button> */}
             <div className="module_app_body">
                 <Header />
                 <Switch>
                     <Route exact path="/prop_owners/properties">
-                        <Properties />
+                        <Properties propDetails={propDetails}/>
                     </Route>
                     <Route exact path="/prop_owners/listings">
-                        <Listings getTargetProperty={getTargetProperty}/>
+                        <Listings 
+                            getTargetProperty={getTargetProperty}
+                            allListings={allListings}
+                            />
                     </Route>
                     <Route exact path="/prop_owners/transactions">
                         <Transactions />

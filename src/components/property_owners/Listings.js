@@ -2,7 +2,7 @@ import { Add, Delete, Receipt, SentimentVeryDissatisfied } from '@mui/icons-mate
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Listings() {
+export default function Listings({allListings, userListings}) {
     return (
         <section className="listings_section">
             <div className="section_routes_div">
@@ -22,7 +22,7 @@ export default function Listings() {
                 {/* IF PROPERTIES */}
                     <div className="prop_title listing_title">
                         <h3>Listed Properties</h3>
-                        <p>You have 3 active listings</p>
+                        <p>You have {allListings?.length}  active listings</p>
                     </div>
                     
                     <div className="listing_div">
