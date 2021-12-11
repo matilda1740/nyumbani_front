@@ -15,16 +15,7 @@ export default function TenantTransactions() {
                         <button className="request_btn">Make Payment</button>
                         </Link>
                 </div>      
-
-                {/* <div className="total_trans_div">
-                    <h3 className="trans_title">Total Amount Paid</h3>
-                    <p>
-                        <span className="trans_currency">Ksh. </span>
-                        <span className="trans_amount">432,000</span>
-                    </p>
-                    <p className="trans_date">from <strong>23rd January 2015</strong></p>
-                </div>             */}
-                {/* TABLE */}
+                
                 <div className="transactions_div">
                     <div className="trans_row">
                         <div className="trans_row_col">

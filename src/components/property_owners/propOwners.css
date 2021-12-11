@@ -160,6 +160,7 @@
   flex-flow: row wrap;
   justify-content: space-between;
   align-content: flex-start;
+  overflow-y: scroll;
 }
 .each_prop_div:nth-of-type(even) {
   margin-left: 50px;
@@ -279,6 +280,7 @@
   padding: 25px 0;
   justify-content: center;
 }
+.listing_right_container h3,
 .listing_right_container p {
   padding-bottom: 20px;
   align-items: center;

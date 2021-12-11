@@ -17,22 +17,83 @@ export default function Transactions() {
                 <SentimentVeryDissatisfied />
                 </div> */}
 
+                <div className="prop_title listing_title">
+                    <h3>Transaction History</h3>
+                    <Link to="/tenants/make_payment">
+                    <button className="request_btn">Download Report</button>
+                    </Link>
+                </div>                   
+
                 {/* IF TRANSACTIONS */}
-                <section className="transaction_body">
-                    <div className="add_prop_title">
-                        <h3>Transaction Information</h3>
-                    </div>  
-
-                    <div className="trans_header">
-                        <Link to="/prop_owners/transactions/history">Transaction History</Link>
-                        <Link to="/prop_owners/transactions/summary">Transaction Summary</Link>
-                        <Link to="/prop_owners/transactions/report">Download Report</Link>
+                <div className="transactions_div">
+                    <div className="trans_row">
+                        <div className="trans_row_col">
+                            <p>Ksh. 70,000</p>
+                        </div>
+                       <div className="trans_row_col">
+                            <p>Made on: <span>5th June 2014</span></p>
+                        </div>  
+                        <div className="trans_row_col">
+                            <p className="status_closed">Confirmed</p>
+                        </div>                               
                     </div>
+                    <div className="trans_row">
+                        <div className="trans_row_col">
+                            <p>Ksh. 70,000</p>
+                        </div>
+                       <div className="trans_row_col">
+                            <p>Made on: <span>5th June 2014</span></p>
+                        </div>  
+                        <div className="trans_row_col">
+                            <p className="status_closed">Confirmed</p>
+                        </div>                               
+                    </div>
+                    <div className="trans_row">
+                        <div className="trans_row_col">
+                            <p>Ksh. 70,000</p>
+                        </div>
+                       <div className="trans_row_col">
+                            <p>Made on: <span>5th June 2014</span></p>
+                        </div>  
+                        <div className="trans_row_col">
+                            <p className="status_closed">Confirmed</p>
+                        </div>                               
+                    </div>
+                    <div className="trans_row">
+                        <div className="trans_row_col">
+                            <p>Ksh. 70,000</p>
+                        </div>
+                       <div className="trans_row_col">
+                            <p>Made on: <span>5th June 2014</span></p>
+                        </div>  
+                        <div className="trans_row_col">
+                            <p className="status_closed">Confirmed</p>
+                        </div>                               
+                    </div>
+                    <div className="trans_row">
+                        <div className="trans_row_col">
+                            <p>Ksh. 70,000</p>
+                        </div>
+                       <div className="trans_row_col">
+                            <p>Made on: <span>5th June 2014</span></p>
+                        </div>  
+                        <div className="trans_row_col">
+                            <p className="status_closed">Confirmed</p>
+                        </div>                               
+                    </div>                    
+                </div>
 
-                    {/* <Route path="/prop_owners/transactions/history"> */}
-                        <TransactionsTable />
-                    {/* </Route>                */}
-                </section>
+                <div className="trans_row total_trans_div">
+                    <div className="trans_row_col">
+                        <h3 className="trans_title">Total Amount Paid</h3>
+                    </div>
+                    <div className="trans_row_col">
+                        <p>Ksh. <span>432,000</span></p>
+                    </div>  
+                    <div className="trans_row_col">
+                        <p className="trans_date">from <strong>23rd January 2015</strong></p>                    
+                    </div>                               
+                </div>
             </div>        
         </section>
     )

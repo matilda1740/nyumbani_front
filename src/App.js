@@ -27,8 +27,8 @@ export default function App() {
   const [propDetails, setPropDetails] = useState();
   const [allListings, setAllListings] = useState();
   const [userListings, setUserListings] = useState();
-
-
+  const [applications, setApplications] = useState();
+  const [requests, setRequests] = useState();
 
   const [errors, setErrors] = useState([
     {
@@ -65,6 +65,7 @@ export default function App() {
       })
       .catch( error => console.log("Error Getting Properties: ", error))  
   }
+
   const getAllListings = async () => {
     axios.get('/listings')
       .then( response => {
@@ -74,7 +75,7 @@ export default function App() {
       .catch( error => console.log("Error Getting Listings: ", error))  
   } 
 
-    const getUserListings = async () => {
+  const getUserListings = async () => {
     axios.get('/listing/1')
       .then( response => {
       console.log("Success, Getting User Listings: ", response.data)
@@ -82,6 +83,7 @@ export default function App() {
       } )
       .catch( error => console.log("Error Getting Listings: ", error))  
   } 
+
   const getEachListing = async () => {
     axios.get('/listings/1')
       .then( response => console.log("Success, Getting Specific Listings: ", response.data))
@@ -90,14 +92,21 @@ export default function App() {
 
   const getApplications = async () => {
     axios.get('/applications/1')
-      .then( response => console.log("Success, Getting Applications: ", response.data))
+      .then( response => {
+        console.log("Success, Getting Applications: ", response.data)
+        setApplications(response.data)
+      } )
       .catch( error => console.log("Error Getting Applications: ", error))  
   } 
 
   const getRequests = async () => {
     // GET ALL REQUESTS
     axios.get('/requests/1')
-      .then( response => console.log("Success, Getting Requests: ", response.data))
+      .then( response =>
+        {
+          console.log("Success, Getting Requests: ", response.data)
+          setRequests(response.data)
+        } )
       .catch( error => console.log("Error Getting Requests: ", error))  
   } 
   const getEachProperty = async () => {
@@ -131,15 +140,10 @@ export default function App() {
       .then( response => console.log("Success, Deleting User: ", response.data))
       .catch( error => console.log("Error, Deleting User:: ", error))  
   }  
+
+  // TENANT FUNCTIONS
   return (
     <section className="app_base">
-    {/* <h1>Home Page</h1> */}
-    {/* <button onClick={getProperties}>Get Properties</button>
-    <button onClick={getAllListings}>Get All Listings</button>
-    <button onClick={getEachListing}>Get Each Listing</button>
-    <button onClick={getApplications}>Get Applications</button>
-    <button onClick={getRequests}>Get Requests</button> */}
-
         <Router>
           {/* <AuthProvider> */}
           <Switch>
@@ -162,6 +166,10 @@ export default function App() {
                     allListings={allListings}
                     getUserListings={getUserListings}
                     userListings={userListings}
+                    getApplications={getApplications}
+                    applications={applications}
+                    getRequests={getRequests}
+                    requests={requests}
                     />
                 </Route> 
                 <Route path="/tenants">

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './propOwners.css'
+import '../tenants/tenants.css'
+
 
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
 import Header from './Header'
@@ -14,7 +16,7 @@ import TransactionsTable from './TransactionsTable'
 import EachProperty from './EachProperty'
 import axios from '../../axios'
 
-export default function PropOwnersApp({propDetails, getProperties,  getAllListings, allListings, getUserListings, userListings}) {
+export default function PropOwnersApp({propDetails, getProperties,  getAllListings, allListings, getUserListings, userListings, applications, getApplications, requests, getRequests}) {
 
     const [propTargetID, setPropTargetID] = useState();
 
@@ -26,6 +28,8 @@ export default function PropOwnersApp({propDetails, getProperties,  getAllListin
         getProperties();
         getAllListings();
         getUserListings();
+        getApplications();
+        getRequests();
    }, [])
     return (
         <section className="module_app_base">
@@ -41,16 +45,17 @@ export default function PropOwnersApp({propDetails, getProperties,  getAllListin
                         <Listings 
                             getTargetProperty={getTargetProperty}
                             allListings={allListings}
+                            userListings={userListings}
                             />
                     </Route>
                     <Route exact path="/prop_owners/transactions">
                         <Transactions />
                     </Route>
                     <Route exact path="/prop_owners/applications">
-                        <Applications />
+                        <Applications applications={applications} />
                     </Route>                    
                     <Route exact path="/prop_owners/requests">
-                        <Requests />
+                        <Requests requests={requests} />
                     </Route>                    
                     <Route exact path="/prop_owners/add_properties">
                         <AddProperty />
