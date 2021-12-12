@@ -35,7 +35,7 @@ export default function Login({loginUser}) {
         e.preventDefault();
         validateLogin()
             .then( data => loginUser(userEmail, userPass))
-            // .catch( error => console.log("ClientSide Error: ", error))
+            .catch( error => console.log("ClientSide Error: ", error))
     }  
       
     return (

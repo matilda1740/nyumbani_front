@@ -16,7 +16,7 @@ import TransactionsTable from './TransactionsTable'
 import EachProperty from './EachProperty'
 import axios from '../../axios'
 
-export default function PropOwnersApp({propDetails, getProperties,  getAllListings, allListings, getUserListings, userListings, applications, getApplications, requests, getRequests}) {
+export default function PropOwnersApp({propDetails, getProperties,  getAllListings, allListings, getUserListings, userListings, applications, getApplications, requests, getRequests, getTransactions, poTransactions}) {
 
     const [propTargetID, setPropTargetID] = useState();
 
@@ -30,6 +30,7 @@ export default function PropOwnersApp({propDetails, getProperties,  getAllListin
         getUserListings();
         getApplications();
         getRequests();
+        getTransactions();
    }, [])
     return (
         <section className="module_app_base">
@@ -49,7 +50,7 @@ export default function PropOwnersApp({propDetails, getProperties,  getAllListin
                             />
                     </Route>
                     <Route exact path="/prop_owners/transactions">
-                        <Transactions />
+                        <Transactions poTransactions={poTransactions}/>
                     </Route>
                     <Route exact path="/prop_owners/applications">
                         <Applications applications={applications} />

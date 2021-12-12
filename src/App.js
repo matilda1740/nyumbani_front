@@ -29,6 +29,12 @@ export default function App() {
   const [userListings, setUserListings] = useState();
   const [applications, setApplications] = useState();
   const [requests, setRequests] = useState();
+  const [poTransactions, setPOTransaction] = useState();
+
+
+  // TENANTS STATE 
+
+  const [rentedProp, setRentedProp] = useState();
 
   const [errors, setErrors] = useState([
     {
@@ -42,18 +48,23 @@ export default function App() {
   // AUTH
   const registerUser = async (userData) => {
     console.log("Main App User Details: ", userData);
-    // setCurrentUser(true)
-    // setCurrentUserData(userData)
       axios.post(
-        '/register', 
-        userData, 
-        {headers: {'Access-Control-Allow-Origin': '*'}}
+        '/register', userData
         )
-      .then( response => console.log("Success, Registering User: ", response.data))
+      .then( response => {
+        console.log("Success, Registering User: ", response.data)
+        history.push('/login')
+      })
       .catch( error => console.log("Error Registering User: ", error))    
   }
-  const loginUser = async (userData) => {
-
+  const loginUser = async (email, pass) => {
+      axios.post('/login', {email, pass})
+      .then( response => {
+        console.log("Success, Logining User: ", response.data)
+        setCurrentUser({email, pass});
+        // history.push('/login')
+      } )
+      .catch( error => console.log("Error Logining User: ", error)) 
   }
 
   // PROPERTIES
@@ -89,6 +100,14 @@ export default function App() {
       .then( response => console.log("Success, Getting Specific Listings: ", response.data))
       .catch( error => console.log("Error Getting Listings: ", error))  
   } 
+  const getTransactions = async () => {
+    axios.get('/transactions/1')
+      .then( response => {
+        console.log("Success, Getting Transactions: ", response.data)
+        setPOTransaction(response.data)
+      })
+      .catch( error => console.log("Error Getting Transactions: ", error))  
+  }
 
   const getApplications = async () => {
     axios.get('/applications/1')
@@ -105,7 +124,7 @@ export default function App() {
       .then( response =>
         {
           console.log("Success, Getting Requests: ", response.data)
-          setRequests(response.data)
+          setPOTransaction(response.data)
         } )
       .catch( error => console.log("Error Getting Requests: ", error))  
   } 
@@ -142,6 +161,17 @@ export default function App() {
   }  
 
   // TENANT FUNCTIONS
+
+  const getRentedProperty = async () => {
+    // GET ALL LISTINGS WHERE USERID == LOGGED IN USER && PROP ID == CLICK
+    axios.get('/tenants/4')
+      .then( response => {
+        console.log("Success, Getting Tenant Rented Property: ", response.data)
+        setRentedProp(response.data)
+      } )
+      .catch( error => console.log("Error Getting Tenant Rented  Property: ", error))  
+  }  
+
   return (
     <section className="app_base">
         <Router>
@@ -154,8 +184,8 @@ export default function App() {
               <Register registerUser={registerUser} />
             </Route>
                      
-             <Route eaxct path="/login">
-              <Login/>
+             <Route exact path="/login">
+              <Login loginUser={loginUser}/>
             </Route>
                 <Route path="/prop_owners">
                   <PropOwnersApp 
@@ -170,10 +200,19 @@ export default function App() {
                     applications={applications}
                     getRequests={getRequests}
                     requests={requests}
+                    getTransactions={getTransactions}
+                    poTransactions={poTransactions}
                     />
                 </Route> 
                 <Route path="/tenants">
-                  <TenantApp currentUserData={currentUserData}/>
+                  <TenantApp 
+                    currentUserData={currentUserData}
+                    getRentedProperty={getRentedProperty}
+                    rentedProp={rentedProp}
+                    getAllListings={getAllListings}
+                    allListings={allListings}
+                   
+                    />
                 </Route>                                {/* { */}
               {/* (currentUser && currentUserData !== undefined) ? */}
               {/* currentUserData.role === "Property Owner" ? 

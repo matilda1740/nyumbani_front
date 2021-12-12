@@ -1,5 +1,5 @@
 import React from 'react'
-import { Add, SentimentVeryDissatisfied } from '@mui/icons-material';
+import { Add, SentimentVeryDissatisfied, Visibility } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 export default function Properties({propDetails}) {
@@ -35,7 +35,9 @@ export default function Properties({propDetails}) {
                                         </div>
                                         <div className="each_info">
                                             <Link to="/prop_owners/1" className="info_div details">View Details</Link>
-                                        </div>                            
+                                        </div> 
+                                                                                    <Link to="/"><Visibility/></Link>
+                           
                                     </div>
                                 </div>
                             ))

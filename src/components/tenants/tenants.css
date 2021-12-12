@@ -13,6 +13,9 @@
   border-radius: 8px;
   display: flex;
 }
+.each_tenant_prop_div:nth-child(n + 2) {
+  margin-top: 40px;
+}
 .tenant_image_cont {
   height: 85%;
 }
@@ -60,7 +63,8 @@
   align-items: center;
   justify-content: space-between;
 }
-.tenant_list_each_info svg {
+.tenant_list_each_info svg,
+.each_prop_div .info_cont svg {
   color: #400101;
   font-size: 20px;
 }

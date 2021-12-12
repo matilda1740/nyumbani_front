@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
 import './tenants.css'
 import '../property_owners/propOwners.css'
@@ -12,7 +12,12 @@ import TenantRequestForm from './TenantRequestForm'
 import TenantTransactions from './TenantTransactions'
 import TenantPayment from './TenantPayment'
 
-export default function TenantApp() {
+export default function TenantApp({getRentedProperty, rentedProp, getAllListings, allListings}) {
+
+   useEffect(() => {
+        getRentedProperty();
+        getAllListings();
+   }, [])
     return (
         <section className="module_app_base">
             <TenantSidebar />
@@ -21,13 +26,13 @@ export default function TenantApp() {
                 <Switch>
                     {/* <Route path= {["/tenants", "/tenants/properties"]} component={TenantRented} /> */}
                     <Route exact path="/tenants">
-                       <TenantRented />
+                       <TenantRented rentedProp={rentedProp}/>
                     </Route>             
                     <Route exact path="/tenants/properties">
-                       <TenantRented />
+                       <TenantRented rentedProp={rentedProp}/>
                     </Route>                   
                     <Route exact path="/tenants/listings">
-                       <TenantListings />
+                       <TenantListings allListings={allListings}/>
                     </Route> 
                     <Route exact path="/tenants/requests">
                        <TenantRequest />

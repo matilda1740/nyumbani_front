@@ -73,9 +73,7 @@ export default function Applications({applications}) {
                             </div>                 
                         </>
                     }
-
-                           </div>            
-           
+            </div>                       
         </section>
     )
 }
