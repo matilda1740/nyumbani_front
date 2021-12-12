@@ -111,7 +111,7 @@
 .trans_row_col {
   width: 40%;
   height: 100%;
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 .trans_row_col:last-of-type {
   justify-content: center;

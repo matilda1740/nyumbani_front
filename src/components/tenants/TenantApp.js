@@ -12,11 +12,13 @@ import TenantRequestForm from './TenantRequestForm'
 import TenantTransactions from './TenantTransactions'
 import TenantPayment from './TenantPayment'
 
-export default function TenantApp({getRentedProperty, rentedProp, getAllListings, allListings}) {
+export default function TenantApp({getRentedProperty, rentedProp, getAllListings, allListings, getTenantTransactions, tenantTransactions, getTenantRequests, tenantRequests}) {
 
    useEffect(() => {
         getRentedProperty();
         getAllListings();
+        getTenantTransactions();
+        getTenantRequests();
    }, [])
     return (
         <section className="module_app_base">
@@ -35,13 +37,13 @@ export default function TenantApp({getRentedProperty, rentedProp, getAllListings
                        <TenantListings allListings={allListings}/>
                     </Route> 
                     <Route exact path="/tenants/requests">
-                       <TenantRequest />
+                       <TenantRequest tenantRequests={tenantRequests}/>
                     </Route> 
                     <Route exact path="/tenants/submit_request">
                        <TenantRequestForm />
                     </Route>                     
                     <Route exact path="/tenants/transactions">
-                       <TenantTransactions />
+                       <TenantTransactions tenantTransactions={tenantTransactions}/>
                     </Route>  
                     <Route exact path="/tenants/make_payment">
                        <TenantPayment />

@@ -26,16 +26,17 @@ export default function Transactions({poTransactions}) {
                 <div className="transactions_div">
                     <div className="trans_row row_header">
                         <div className="trans_row_col">
+                            <p>Target Property</p>
+                        </div>                     
+                        <div className="trans_row_col">
                             <p>Transaction Amount</p>
                         </div>
-                        <div className="trans_row_col">
+                        {/* <div className="trans_row_col">
                             <p>Transaction Date</p>
-                        </div>  
+                        </div>   */}
+                         
                         <div className="trans_row_col">
-                            <p>Property</p>
-                        </div>                          
-                        <div className="trans_row_col">
-                            <p>Transaction Status</p>
+                            <p>Payment Status</p>
                         </div>                              
                     </div>                     
                     
@@ -43,16 +44,23 @@ export default function Transactions({poTransactions}) {
                         poTransactions?.map( transaction => (
                             <div className="trans_row" key={transaction.paymentID}>
                                 <div className="trans_row_col">
-                                    <p>Ksh. {transaction.paymentAmount}</p>
+                                    <p><span>{transaction.propertyDescription}</span></p>
+                                </div>                                   
+                                <div className="trans_row_col">
+                                    <p>Ksh. {transaction.propertyRent}</p>
                                 </div>
-                                <div className="trans_row_col">
+                                {/* <div className="trans_row_col">
                                     <p><span>{transaction.paymentDate}</span></p>
-                                </div> 
+                                </div>  */}
+                              
                                 <div className="trans_row_col">
-                                    <p><span>{transaction.propertyID}</span></p>
-                                </div>                                 
-                                <div className="trans_row_col">
-                                    <p className="status_closed">Confirmed</p>
+                                {
+                                    transaction.rentStatus === "Overdue" ?
+                                        <p className="status_pending request_btn">Pending</p>
+                                    : 
+                                    <p className="status_closed request_btn">Confirmed</p>
+                                }
+                                    
                                 </div>                               
                             </div>
                         ))
@@ -65,7 +73,7 @@ export default function Transactions({poTransactions}) {
                     </div>
                     
                     <div className="trans_row_col">
-                        <p>Ksh. <span>{poTransactions?.reduce((sum, curr) => sum+=parseInt(curr.paymentAmount), 0)}</span></p>
+                        <p>Ksh. <span>{poTransactions?.reduce((sum, curr) => sum+=parseInt(curr.propertyRent), 0)}</span></p>
                     </div>  
                     {/* <div className="trans_row_col">
                         <p className="trans_date">from <strong>23rd January 2015</strong></p>                    

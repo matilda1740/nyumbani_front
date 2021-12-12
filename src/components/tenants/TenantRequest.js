@@ -1,66 +1,81 @@
+import { SentimentVeryDissatisfiedOutlined } from '@mui/icons-material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function TenantRequest() {
+export default function TenantRequest({tenantRequests}) {
     return (
         <section className="requests_section">
             <div className="section_routes_div">
 
             </div>
             <div className="section_body">
-                {/* TITLE */}
-                    <div className="prop_title listing_title">
-                        <h3>Maintainance History</h3>
-                        {/* <p>5 Previous Requests</p> */}
+                {
+                    tenantRequests?.length ?
+                    <>
+                        <div className="prop_title listing_title">
+                            <h3>Maintainance History</h3>
+                            <Link to="/tenants/submit_request">
+                            <button className="request_btn">Make a new Request</button>                        
+                            </Link>
+                        </div>   
 
-                         <Link to="/tenants/submit_request">
-                         <button className="request_btn">Make a new Request</button>                        
-                         </Link>
-                    </div>                  
-                {/* TABLE */}
-                <div className="table_area">
-                    <table className="applications_table">
-                        <thead>
-                            <tr>
-                                <th>Ticket ID</th>
-                                <th>Ticket Type</th>
-                                <th>Date Raised</th>
-                                <th>Date Handled</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                <tr>
-                                    <td>TK16579T</td>
-                                    <td>Maintainance</td>
-                                    <td>25th March 2000</td>
-                                    <td>27th March 2000</td>
-                                    <td><p className="details status_pending">Pending</p></td>
-                                </tr>
-                                <tr>
-                                    <td>TK16579T</td>
-                                    <td>Maintainance</td>
-                                    <td>25th March 2000</td>
-                                    <td>27th March 2000</td>
-                                    <td><p className="details status_pending">Pending</p></td>
-                                </tr>
-                                <tr>
-                                    <td>TK16579T</td>
-                                    <td>Maintainance</td>
-                                    <td>25th March 2000</td>
-                                    <td>27th March 2000</td>
-                                    <td><p className="details status_closed">Closed</p></td>
-                                </tr>
-                                <tr>
-                                    <td>TK16579T</td>
-                                    <td>Maintainance</td>
-                                    <td>25th March 2000</td>
-                                    <td>27th March 2000</td>
-                                    <td><p className="details status_closed">Closed</p></td>
-                                </tr>                                                                
-                        </tbody>    
-                    </table>  
-                </div>
+                        <div className="transactions_div">
+                            <div className="trans_row row_header">
+                                <div className="trans_row_col">
+                                    <p>Request Message</p>
+                                </div>                              
+                                <div className="trans_row_col">
+                                    <p>Date Requested</p>
+                                </div>
+                                <div className="trans_row_col">
+                                    <p>Date Completed</p>
+                                </div>                                  
+
+                                <div className="trans_row_col">
+                                    <p>Status</p>
+                                </div>                              
+                            </div>  
+                            {
+                                tenantRequests?.map( requests => (
+                                    <div className="trans_row" key={requests.requestID}>
+                                        <div className="trans_row_col">
+                                            <p>{requests.requestMessage}</p>
+                                        </div>                                    
+                                        <div className="trans_row_col">
+                                            <p>{requests.dateRequested}</p>
+                                        </div>
+                                        <div className="trans_row_col">
+                                            {
+                                                requests.dateCompleted === "0000-00-00" ? 
+                                                <p>ongoing</p>
+                                                :
+                                                <p>{requests.dateCompleted}</p>
+                                            }
+                                            
+                                        </div>                                                                  
+                                        <div className="trans_row_col">
+                                            {
+                                                requests.requestStatus === "0" ?
+                                                <p className="request_btn  status_pending ">Pending</p>
+                                                : requests.requestStatus === "1" &&
+                                                <p className="request_btn  status_closed">Confirmed</p>
+                                            }
+                                            
+                                        </div>                               
+                                    </div>
+                                ))
+                            }                 
+                        </div>
+                    </>
+                    :
+                    <>
+                        <div className="add_prop_title">
+                        <h3>There are no records of your previous maintenance requests</h3>
+                        <SentimentVeryDissatisfiedOutlined />
+                        </div>                  
+                    </>
+                }
+              
 
             </div>             
         </section>

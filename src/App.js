@@ -35,6 +35,9 @@ export default function App() {
   // TENANTS STATE 
 
   const [rentedProp, setRentedProp] = useState();
+  const [tenantTransactions, setTenantTransactions] = useState();
+  const [tenantRequests, setTenantRequests] = useState();
+
 
   const [errors, setErrors] = useState([
     {
@@ -100,13 +103,15 @@ export default function App() {
       .then( response => console.log("Success, Getting Specific Listings: ", response.data))
       .catch( error => console.log("Error Getting Listings: ", error))  
   } 
+
+  // WORK ON THIS
   const getTransactions = async () => {
     axios.get('/transactions/1')
       .then( response => {
-        console.log("Success, Getting Transactions: ", response.data)
+        console.log("Success, Getting P/O Transactions: ", response.data)
         setPOTransaction(response.data)
       })
-      .catch( error => console.log("Error Getting Transactions: ", error))  
+      .catch( error => console.log("Error Getting P/O Transactions: ", error))  
   }
 
   const getApplications = async () => {
@@ -128,6 +133,7 @@ export default function App() {
         } )
       .catch( error => console.log("Error Getting Requests: ", error))  
   } 
+
   const getEachProperty = async () => {
     // GET ALL LISTINGS WHERE USERID == LOGGED IN USER && PROP ID == CLICK
     axios.get('https://jsonplaceholder.typicode.com/comments?postId=1/comments?postId=1')
@@ -170,8 +176,25 @@ export default function App() {
         setRentedProp(response.data)
       } )
       .catch( error => console.log("Error Getting Tenant Rented  Property: ", error))  
-  }  
+  } 
 
+  const getTenantTransactions = async () => {
+    axios.get('/payments/tenant/6')
+      .then( response => {
+        console.log("Success, Getting Tenant Transactions: ", response.data)
+        setTenantTransactions(response.data)
+      } )
+      .catch( error => console.log("Error Getting Tenant Transactions: ", error))  
+  }  
+  const getTenantRequests = async () => {
+    axios.get('/tenants/requests/6')
+      .then( response => {
+        console.log("Success, Getting Tenant Requests: ", response.data)
+        setTenantRequests(response.data)
+      } )
+      .catch( error => console.log("Error Getting Tenant Requests: ", error))  
+  }
+  // 
   return (
     <section className="app_base">
         <Router>
@@ -211,7 +234,10 @@ export default function App() {
                     rentedProp={rentedProp}
                     getAllListings={getAllListings}
                     allListings={allListings}
-                   
+                    getTenantTransactions={getTenantTransactions}
+                    tenantTransactions={tenantTransactions}
+                    getTenantRequests={getTenantRequests}
+                    tenantRequests={tenantRequests}
                     />
                 </Route>                                {/* { */}
               {/* (currentUser && currentUserData !== undefined) ? */}
