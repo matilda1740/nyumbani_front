@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Requests({requests}) {
     return (
-        <section class="applications_section">
+        <section className="applications_section">
             <div className="section_routes_div">
 
             </div>
@@ -13,7 +13,7 @@ export default function Requests({requests}) {
                         <>
                             <div className="prop_title listing_title">
                                 <h3>Requests</h3>
-                                <p>You have {requests?.length} requests</p>
+                                <p>Your clients have raised {requests?.length} requests, 0 are currently pending</p>
                             </div>                  
 
                             <div className="transactions_div">
@@ -61,7 +61,7 @@ export default function Requests({requests}) {
                         :
                         <>
                             <div className="add_prop_title">
-                            <h3>You don't have any active applications yet</h3>
+                            <h3>Maintenance History is currently unavailable</h3>
                             <SentimentVeryDissatisfied />
                             </div>                 
                         </>

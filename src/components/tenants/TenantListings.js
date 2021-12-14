@@ -2,7 +2,7 @@ import { Delete, Filter, HouseOutlined, Receipt, Search, SentimentVeryDissatisfi
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function TenantListings({allListings}) {
+export default function TenantListings({getTargetProperty,allListings}) {
     return (
         <section className="listings_section">
             <div className="section_routes_div">
@@ -28,12 +28,17 @@ export default function TenantListings({allListings}) {
                                 allListings?.map( listing => (
                                     <div className="each_prop_div" key={listing.listingID}>
                                         <div className="image_cont">
+                                    { 
+                                            listing.thumbnailPhoto !== null ?
+                                            <img src={`/images/${listing.thumbnailPhoto.replace(/["]+/g, '')}`} alt="Property"/>
+                                            :
                                             <img src="/images/prop1.jpeg" alt="Property"/>
+                                    }
                                         </div>
                                         <div className="info_cont">
                                             <div className="each_info tenant_list_each_info">
                                                 <p>{listing.propertyDescription}</p>
-                                                <Link to="/"><Visibility/></Link>
+                                                <Link onClick={getTargetProperty(listing, listing.propertyID )} to={`/tenants/properties/${listing.propertyID}`}><Visibility/></Link>
                                             </div>                            
                                         </div>
                                     </div>

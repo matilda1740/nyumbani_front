@@ -1,4 +1,4 @@
-import { Filter, Search, SentimentVeryDissatisfied, Sort } from '@mui/icons-material'
+import { Filter, Phone, Search, SentimentVeryDissatisfied, Sort } from '@mui/icons-material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -38,7 +38,7 @@ export default function Applications({applications}) {
                                         <p>Application Date</p>
                                     </div>   
                                     <div className="trans_row_col">
-                                        <p>Details</p>
+                                        <p>Get in Touch</p>
                                     </div>                               
                                 </div>
                                 {
@@ -56,7 +56,8 @@ export default function Applications({applications}) {
                                     <div className="trans_row_col">
                                         <p>{application.application_date}</p>
                                     </div>                                      <div className="trans_row_col">
-                                        <p className="details request_btn"> Details</p>
+                                        <a href="tel:+254712345678" className="details request_btn contact_btn"> 
+                                        <Phone/>Contact</a>
                                     </div>                               
                                 </div>                                   
                                 ))

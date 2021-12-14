@@ -1,23 +1,25 @@
-import { Cancel, Home } from '@mui/icons-material'
+import { Cancel, Home,CheckCircleOutline  } from '@mui/icons-material'
 import React , {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 export default function TenantPayment() {
 
+    const history = useHistory();
+
     const [isCard, setIsCard] = useState(false);
     const [isMpesa, setIsMpesa] = useState(false);
+    // const [payDetails, setPayDetails] = useState();
+    const [payAmt, setPayAmt] = useState();
+    const [payMethod, setPayMethod] = useState();
+    const [payType, setPayType] = useState();
 
-    const handlePayment = () => {
-
-    }
 
     const handleChange = input => (e) => {
-
-        if(input === "payment_method"){
-            if(e.target.value === "card"){
+        if(input === "paymentMethod"){
+            if(e.target.value === "Card"){
                 isCard ? setIsCard(false) : setIsCard(true)
                 setIsMpesa(false)
-            }else if(e.target.value === "mpesa"){
+            }else if(e.target.value === "Mpesa"){
                 isMpesa ? setIsMpesa(false) : setIsMpesa(true)
                 setIsCard(false)
             }else {
@@ -25,37 +27,65 @@ export default function TenantPayment() {
                 setIsCard(false)
             }
         }
+
+        input === "paymentAmount" ? setPayAmt(e.target.value) : 
+        input === "paymentMethod" ? setPayMethod(e.target.value) :
+        input === "paymentType" && setPayType(e.target.value)
+
+    }
+
+    const [ successAlert, setSuccessAlert] = useState(false);
+    const [ alertMsg, setAlertMsg] = useState("");
+    const alertStyle = { display: successAlert ? `flex`  : `none`}
+    
+    const handlePayment = (e) => {
+        e.preventDefault();
+        setSuccessAlert(true)
+        setAlertMsg("Payment Initiated Successfully!")
+        setTimeout(() => {
+            setSuccessAlert(false)
+            setAlertMsg("")   
+            history.push({pathname: "/tenants/transactions", state: {
+            paymentID: "4",
+            propertyID: "10",
+            recipientID: "1",
+            senderID: "6",
+            paymentDate: new Date().getFullYear()+ "-" + new Date().getMonth()   + "-" + new Date().getDate(),
+            paymentAmount: payAmt,
+            paymentMethod: payMethod,
+            paymentType: payType,
+            status: 0
+        }})        
+        }, 4000);        
     }
     return (
         <section className="section_body">
+            <div className="user_alerts success" style={{ display: alertStyle.display }}>
+                <p>{alertMsg}</p>
+                <CheckCircleOutline />
+                {/* <CancelOutlined /> */}
+            </div>  
             <div className="payment_form_div">
                 <h2 className="add_prod_title">Make a Payment</h2>
-                {/* {
-                isError &&
-                <div className="form_error form_inputs"> 
-                    <p>{clientSideError}</p>
-                </div> 
-        
-                }                     */}
                 <form onSubmit={handlePayment} className="auth_form">
 
                 <label className="form_labels">Type of Payment</label>
 
-                <select onChange={handleChange("payment_type")} className="form_inputs" id="request_type" name="request_type">
+                <select onChange={handleChange("paymentType")} className="form_inputs" id="paymentType" name="paymentType">
                     <option value="" defaultValue>Select Type:</option>
-                    <option value="rent">Rent</option>
-                    <option value="maintenance">Maintenance</option>
-                    <option value="electricity">Electricity</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Electricity">Electricity</option>
                 </select> 
 
                 <label className="form_labels">Payment Amount in Ksh.</label>
-                <input onChange={handleChange("payAmt")} type="text" className="form_inputs" name="payAmt" />
+                <input onChange={handleChange("paymentAmount")} type="text" className="form_inputs" name="paymentAmount" />
 
                 <label className="form_labels">Method of Payment</label>
-                <select onChange={handleChange("payment_method")} className="form_inputs" id="request_type" name="request_type">
+                <select onChange={handleChange("paymentMethod")} className="form_inputs" id="paymentMethod" name="paymentMethod">
                     <option value="" defaultValue>Select Method:</option>
-                    <option value="card">Credit Card</option>
-                    <option value="mpesa">Mpesa</option>
+                    <option value="Card">Credit Card</option>
+                    <option value="Mpesa">Mpesa</option>
                 </select>     
                 {
                     isCard ? 

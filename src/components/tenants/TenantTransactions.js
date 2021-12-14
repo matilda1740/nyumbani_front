@@ -1,8 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Delete, Filter, HouseOutlined, Receipt, Search, SentimentVeryDissatisfied, SentimentVeryDissatisfiedOutlined, Sort, Visibility } from '@mui/icons-material'
 
 export default function TenantTransactions({tenantTransactions}) {
+     const {state} = useLocation();
+
+    const [updatedTransactions, setUpdatedTransactions] = useState(tenantTransactions);
+
+    useEffect(() => {
+        let isSubscribed = true
+        if (state !== undefined && state !== null){
+            if (isSubscribed) {setUpdatedTransactions([state, ...tenantTransactions]);}
+        }
+    return () => isSubscribed = false
+    }, [tenantTransactions])   
     return (
         <section className="tenant_transactions_section">
             <div className="section_routes_div">
@@ -39,7 +50,7 @@ export default function TenantTransactions({tenantTransactions}) {
                                 </div>                              
                             </div>  
                             {
-                                tenantTransactions?.map( transaction => (
+                                updatedTransactions?.map( transaction => (
                                     <div className="trans_row" key={transaction.paymentID}>
                                         <div className="trans_row_col">
                                             <p>{transaction.paymentType}</p>
@@ -54,7 +65,12 @@ export default function TenantTransactions({tenantTransactions}) {
                                             <p><span>{transaction.paymentDate}</span></p>
                                         </div>                                
                                         <div className="trans_row_col">
-                                            <p className="status_closed">Confirmed</p>
+                                        {
+                                            (transaction.status === 0)?
+                                            <p className="status_pending">Pending</p>
+                                            : 
+                                           <p className="status_closed">Confirmed</p>
+                                        }
                                         </div>                               
                                     </div>
                                 ))

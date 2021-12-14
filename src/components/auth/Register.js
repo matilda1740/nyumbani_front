@@ -1,12 +1,14 @@
-import { Cancel, Home } from '@mui/icons-material';
+import { Cancel, CheckCircleOutline, Home } from '@mui/icons-material';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../property_owners/propOwners.css'
 import './authforms.css'
 
 import {useAuth} from '../../contexts/AuthContext'
 
 export default function Register({registerUser}) {
+
+    const history = useHistory();
 
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
@@ -51,8 +53,12 @@ export default function Register({registerUser}) {
             setClientSideError("")
         }
     }
+    // NOTIFICATIONS
+    const [ successAlert, setSuccessAlert] = useState(false);
+    const [ alertMsg, setAlertMsg] = useState("");
+    const alertStyle = { display: successAlert ? `flex`  : `none`}
 
-    const handleRegister = async  e => {
+    const handleRegister = async e => {
         e.preventDefault();
         validateRegister()
             .then( data => {
@@ -63,16 +69,27 @@ export default function Register({registerUser}) {
                 role: role,
                 password: password,
                 passwordConfirm: password,
-
-                // isDeleted : 1,               
                 })
-                console.log({firstName, lastName, email, role, password})
+                console.log({firstName, lastName, email, role, password,passwordConfirm})
+                setSuccessAlert(true)
+                setAlertMsg(`Successful ${role} Registration !`)
+                setTimeout(() => {
+                    setSuccessAlert(false)
+                    setAlertMsg("") 
+                    history.push("/login")                            
+                }, 2000);
+                                
             }) 
+            .catch( error => console.log("Registration Component Error: ", error))
     }
 
     return (
         <section className="auth_body">
-            <section className="auth_section">
+            <div className="user_alerts success" style={{ display: alertStyle.display }}>
+                <p>{alertMsg}</p>
+                <CheckCircleOutline />
+                {/* <CancelOutlined /> */}
+            </div>              <section className="auth_section">
                 <div className="form_column column_left">
                     <div className="auth_image">
                         <img src="/images/logo.png" alt="Logo" />

@@ -57,7 +57,7 @@ export default function AddStepTwo({steps, prevStep}) {
                     geoLocate 
                     ? 
                     <>
-                        <h4 className="geoStatus"></h4>
+                        {/* <h4 className="geoStatus"></h4> */}
                         <iframe title="map-link" className="map-link" width="100%" height="300" frameBorder="0"  marginHeight="0" marginWidth="0"  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Malet%20St,%20London%20WC1E%207HU,%20United%20Kingdom+(Your%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> 
 
                     </>
@@ -65,40 +65,30 @@ export default function AddStepTwo({steps, prevStep}) {
                     <>
                         <label className="form_labels">Physical Address:</label>
                         <input 
-                        type="text" className="form_inputs" name="property_rent" />                     
-                    <label className="form_labels">County:</label>
-                    <select className="form_inputs" id="property_type">
-                        <option value="" disabled defaultValue>Select County</option>
-                        <option value="">Nairobi</option>
-                        <option value="">Meru</option>
-                    </select>
-                    <label className="form_labels">Sub-County:</label>
-                    <select className="form_inputs" id="property_type">
-                        <option value="" disabled defaultValue>Select Sub-County</option>
-                        <option value="">Karen</option>
-                        <option value="">Roysambu</option>
-                        <option value="">Madaraka</option>
-                    </select>
-                    </>
+                        type="text" className="form_inputs" name="propertyAddress" />                     
+                        <label className="form_labels">County:</label>
+                        <input 
+                        type="text" className="form_inputs" name="propertyCounty" />   
+                    </> 
                 }
                         
             </div>
 
             <div className="form_column form_right">
                 <label className="form_labels">Property Size:</label>
-                <input type="text" className="form_inputs" name="property_name"/>
+                <input type="text" className="form_inputs" name="propertySize"/>
 
-                <label className="form_labels">Land Size:</label>
-                <input type="text" className="form_inputs" name="property_descr" />
+                <label className="form_labels">No of Bedrooms:</label>
+                <input type="text" className="form_inputs" name="bedrooms" />
 
-                <label className="form_labels">No of Rooms:</label>
+                <label className="form_labels">No of Bathrooms:</label>
                 <input 
-                type="text" className="form_inputs" name="property_rent" />   
+                type="text" className="form_inputs" name="bathrooms" />   
 
  
                 <label className="form_labels">Date Built:</label>
                 <input 
-                type="date" className="form_inputs" name="property_rent" />                                                                
+                type="date" className="form_inputs" name="dateBuilt" />                                                                
                 {
                     steps === 2 && 
                     <div className="nav_row">

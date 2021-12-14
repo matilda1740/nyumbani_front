@@ -1,8 +1,20 @@
 import { SentimentVeryDissatisfiedOutlined } from '@mui/icons-material'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
-export default function TenantRequest({tenantRequests}) {
+export default function TenantRequest({addRequest, newRequests, tenantRequests}) {
+
+        
+    const {state} = useLocation();
+
+    const [updatedRequests, setUpdatedRequest] = useState(tenantRequests);
+    useEffect(() => {
+        let isSubscribed = true
+        if (state !== undefined && state !== null && tenantRequests){
+            if (isSubscribed) {setUpdatedRequest([state, ...tenantRequests]);}
+        }
+    return () => isSubscribed = false
+    }, [tenantRequests])
     return (
         <section className="requests_section">
             <div className="section_routes_div">
@@ -36,7 +48,7 @@ export default function TenantRequest({tenantRequests}) {
                                 </div>                              
                             </div>  
                             {
-                                tenantRequests?.map( requests => (
+                                updatedRequests?.map( requests => (
                                     <div className="trans_row" key={requests.requestID}>
                                         <div className="trans_row_col">
                                             <p>{requests.requestMessage}</p>

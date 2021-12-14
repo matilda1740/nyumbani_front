@@ -4,7 +4,7 @@ import '../tenants/tenants.css'
 
 
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
-import Header from './Header'
+import Header from '../Header'
 import AddProperty from './AddProperty'
 import Properties from './Properties'
 import POSidebar from './POSidebar'
@@ -16,12 +16,14 @@ import TransactionsTable from './TransactionsTable'
 import EachProperty from './EachProperty'
 import axios from '../../axios'
 
-export default function PropOwnersApp({propDetails, getProperties,  getAllListings, allListings, getUserListings, userListings, applications, getApplications, requests, getRequests, getTransactions, poTransactions}) {
+export default function PropOwnersApp({logoutUser, loginData,currentUserData, propDetails, getProperties,  getAllListings, allListings, getUserListings, userListings, applications, getApplications, requests, getRequests, getTransactions, poTransactions}) {
 
-    const [propTargetID, setPropTargetID] = useState();
+    const [targetProperty, setTargetProperty] = useState();
+    const [targetID, setTargetID] = useState();
 
-    const getTargetProperty = targetID => () => {
-        setPropTargetID(targetID)
+    const getTargetProperty = (property, id) => () => {
+        setTargetProperty(property)
+        setTargetID(id)
     }
 
    useEffect(() => {
@@ -35,12 +37,13 @@ export default function PropOwnersApp({propDetails, getProperties,  getAllListin
     return (
         <section className="module_app_base">
             <POSidebar />
-            {/* <button onClick={handleGetProperty}>Get Properties</button> */}
             <div className="module_app_body">
-                <Header />
+                <Header logoutUser={logoutUser} loginData={loginData} currentUserData={currentUserData}/>
                 <Switch>
                     <Route exact path="/prop_owners/properties">
-                        <Properties propDetails={propDetails}/>
+                        <Properties
+                            getTargetProperty={getTargetProperty}
+                            propDetails={propDetails}/>
                     </Route>
                     <Route exact path="/prop_owners/listings">
                         <Listings 
@@ -62,12 +65,9 @@ export default function PropOwnersApp({propDetails, getProperties,  getAllListin
                         <AddProperty />
                     </Route>
                     {/* TRANSACTION RELATED URLS */}
-                    {/* <Route exact path={`/prop_owners/${propTargetID}`}>
-                        <EachProperty propTargetID={propTargetID}/>
-                    </Route> */}
-                    <Route exact path="/prop_owners/1">
-                        <EachProperty propTargetID={propTargetID}/>
-                    </Route>                    
+                    <Route exact path={`/prop_owners/properties/${targetID}`}>
+                        <EachProperty targetProperty={targetProperty} targetID={targetID}/>
+                    </Route>
                 </Switch>
             </div>
 

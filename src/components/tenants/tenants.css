@@ -146,6 +146,15 @@
 .listing_title a {
   margin-right: 6%;
 }
+.contact_btn {
+  display: flex;
+  align-items: center;
+  padding: 7.5px 10px !important;
+}
+.contact_btn svg {
+  font-size: medium;
+  margin-right: 5px;
+}
 .request_btn {
   transition: 0.3s;
   background-color: #400101;
@@ -160,6 +169,8 @@
 .status_pending {
   background-color: #c50101;
   color: #131313;
+  border-radius: 25px;
+  padding: 5px 25px;
 }
 
 .status_closed {

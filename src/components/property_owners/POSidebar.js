@@ -30,10 +30,10 @@ export default function POSidebar() {
                     <QuestionAnswer className="sidebar_icons"/>
                     <p>Requests</p>
                 </Link>
-                <Link to="/prop_owners/profile" className="sidebar_parts">
+                {/* <Link to="/prop_owners/profile" className="sidebar_parts">
                     <AccountCircle className="sidebar_icons"/>
                     <p>My Profile</p>
-                </Link>
+                </Link> */}
             </section>
         </section>
     )

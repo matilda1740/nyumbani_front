@@ -25,10 +25,10 @@ export default function TenantsSidebar() {
                     <QuestionAnswer className="sidebar_icons"/>
                     <p>Requests</p>
                 </Link>
-                <Link to="/tenants/profile" className="sidebar_parts">
+                {/* <Link to="/tenants/profile" className="sidebar_parts">
                     <AccountCircle className="sidebar_icons"/>
                     <p>My Profile</p>
-                </Link>
+                </Link> */}
             </section>
         </section>
     )

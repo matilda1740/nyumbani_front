@@ -2,7 +2,7 @@ import { House, SentimentVeryDissatisfied, Visibility } from '@mui/icons-materia
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function TenantRented({rentedProp}) {
+export default function TenantRented({getTargetProperty,rentedProp}) {
     return (
         <section className="tenants_rented_section">
             <div className="section_routes_div">
@@ -22,8 +22,12 @@ export default function TenantRented({rentedProp}) {
                                 rentedProp?.map( property => (
                                     <div className="each_tenant_prop_div" key={property.propertyID}>
                                         <div className="tenant_image_cont">
+                                    { 
+                                            property.thumbnailPhoto !== null ?
+                                            <img src={`/images/${property.thumbnailPhoto.replace(/["]+/g, '')}`} alt="Property"/>
+                                            :
                                             <img src="/images/prop1.jpeg" alt="Property"/>
-                                        </div>
+                                    }                                        </div>
                                         <div className="tenant_info_cont">
                                             <div className="tenant_each_info">
                                                 <h3>{property.propertyDescription}</h3>
@@ -34,7 +38,7 @@ export default function TenantRented({rentedProp}) {
                                                 <div className="info_container">
                                                     <p>Rent Status: </p>
                                                     <div className="info_div isOccupied">Paid</div>
-                                                    <Link to="/"><Visibility/></Link>
+                                                    <Link onClick={getTargetProperty(property, property.propertyID )} to={`/tenants/properties/${property.propertyID}`}><Visibility/></Link>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,9 +1,11 @@
 import { Home } from '@mui/icons-material';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../property_owners/propOwners.css'
 
-export default function Login({loginUser}) {
+export default function Login({loginUser, currentUserData}) {
+
+    const history = useHistory();
 
     const [userEmail, setUserEmail] = useState();
     const [userPass, setUserPass] = useState();
@@ -31,10 +33,32 @@ export default function Login({loginUser}) {
         }
     }
 
+    // NOTIFICATIONS
+    const [ successAlert, setSuccessAlert] = useState(false);
+    const [ alertMsg, setAlertMsg] = useState("");
+    const alertStyle = { display: successAlert ? `flex`  : `none`}
+
     const handleLogin = async e => {
         e.preventDefault();
         validateLogin()
-            .then( data => loginUser(userEmail, userPass))
+            .then( data => {
+                loginUser({email: userEmail, password: userPass})
+                console.log(currentUserData)
+                setSuccessAlert(true)
+                setAlertMsg("Login Successful!")
+                setTimeout(() => {
+                    setSuccessAlert(false)
+                    setAlertMsg("") 
+                    if(currentUserData) {
+                        currentUserData.role === "Property Owner" 
+                        ? history.push('/prop_owners/properties') : 
+                        currentUserData.role === "Tenant" &&
+                        history.push('/tenants/properties')                
+                    }else {
+                        history.push('/prop_owners/properties')
+                    }
+                }, 2000);
+            } )
             .catch( error => console.log("ClientSide Error: ", error))
     }  
       

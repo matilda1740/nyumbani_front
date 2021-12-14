@@ -24,26 +24,11 @@ export default function AddProperty() {
             </div>
             <div className="section_body">
             <section className="add_prop_section"> 
-
-                <div className="user_alerts success">
-                    {/* <p>{alertMsg}</p> */}
-                    {/* <CheckCircleOutline /> */}
-                    {/* <CancelOutlined /> */}
-
-                </div>
-
                 <h2 className="add_prod_title">Add New Property</h2>
-
-                {
-                
-                    steps === 1 
+                {   steps === 1 
                         ? <AddStepOne steps={steps} nextStep={nextStep}/>
                         : steps === 2 && <AddStepTwo steps={steps} prevStep={prevStep}/>
-
                 }
-                
-
-
                 <div className="login_footer back_home_div add_footer">
                     <Link to="/prop_owners/properties"><Cancel />Cancel</Link>
                     <Link to="/prop_owners"><Home />Back Home</Link>
